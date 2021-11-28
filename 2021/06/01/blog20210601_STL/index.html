@@ -6,13 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Archives: 2021/9 | Hexo</title>
+  <title>【C++】STL容器特性总结（更新中） | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/archives/2021/09/index.html">
+  <meta name="description" content="STL的特性总结，目前写得比较糙，持续更新中&#x3D;.&#x3D;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【C++】STL容器特性总结（更新中）">
+<meta property="og:url" content="http://example.com/2021/06/01/blog20210601_STL/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="STL的特性总结，目前写得比较糙，持续更新中&#x3D;.&#x3D;">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-06-01T15:11:30.000Z">
+<meta property="article:modified_time" content="2021-11-28T16:28:29.706Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -132,49 +136,208 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-blog20210601_STL" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/09/10/blog20210910_algorithm/" class="archive-article-date">
-  	<time datetime="2021-09-10T04:53:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-10</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/09/10/blog20210910_algorithm/">[最优化]（更新中）</a>
+    <h1 class="article-title" itemprop="name">
+      【C++】STL容器特性总结（更新中）
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
+        
+        <a href="/2021/06/01/blog20210601_STL/" class="archive-article-date">
+  	<time datetime="2021-06-01T15:11:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-01</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>STL的特性总结，目前写得比较糙，持续更新中=.=</p>
+<span id="more"></span>  
 
+<h1 id="STL容器特性总结"><a href="#STL容器特性总结" class="headerlink" title="STL容器特性总结"></a>STL容器特性总结</h1><h2 id="1-Sequence-Containers"><a href="#1-Sequence-Containers" class="headerlink" title="1.Sequence Containers:"></a>1.Sequence Containers:</h2><p><strong>维持顺序的容器</strong>  </p>
+<p><strong>vector</strong>:<br>&ensp;&ensp;&ensp;&ensp;动态数组；<br>&ensp;&ensp;&ensp;&ensp;O(1)随机读取，O(1)尾部增删；<br>&ensp;&ensp;&ensp;&ensp;可作stack用。  </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建vector容器对象，并且通过模板参数指定容器中存放的数据的类型</span></span><br><span class="line">vector&lt;<span class="keyword">int</span>&gt; v1;</span><br><span class="line"><span class="comment">//向容器中放数据</span></span><br><span class="line">v1.<span class="built_in">push_back</span>(<span class="number">10</span>);</span><br><span class="line">v1.<span class="built_in">push_back</span>(<span class="number">20</span>);</span><br><span class="line">v1.<span class="built_in">push_back</span>(<span class="number">30</span>);</span><br><span class="line">v1.<span class="built_in">push_back</span>(<span class="number">40</span>);</span><br><span class="line"></span><br><span class="line">vector&lt;<span class="keyword">int</span>&gt; v2;</span><br><span class="line">v2 = v1;</span><br><span class="line"></span><br><span class="line">vector&lt;<span class="keyword">int</span>&gt; v3;</span><br><span class="line">v3.<span class="built_in">assign</span>(<span class="number">10</span>,<span class="number">0</span>);  <span class="comment">// 10个0赋值给v3</span></span><br><span class="line"></span><br><span class="line">v1.<span class="built_in">begin</span>();   <span class="comment">// 返回迭代器，这个迭代器指向容器中第一个数据</span></span><br><span class="line">v1.<span class="built_in">end</span>();     <span class="comment">// 返回迭代器，这个迭代器指向容器元素的最后一个元素的下一个位置</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 遍历方式：</span></span><br><span class="line"><span class="keyword">for</span> (vector&lt;<span class="keyword">int</span>&gt;::iterator it = v1.<span class="built_in">begin</span>(); it != v1.<span class="built_in">end</span>(); it++) </span><br><span class="line">&#123;</span><br><span class="line">   cout &lt;&lt; *it &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line">cout &lt;&lt; endl;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 功能:容量和大小</span></span><br><span class="line">v1.<span class="built_in">empty</span>();    <span class="comment">// 判断容器是否为空</span></span><br><span class="line">v1.<span class="built_in">capacity</span>(); <span class="comment">// 容器的容量</span></span><br><span class="line">v1.<span class="built_in">size</span>();     <span class="comment">// 返回容器中元素的个数</span></span><br><span class="line">v1.<span class="built_in">resize</span>(<span class="number">10</span>); <span class="comment">// 重新指定容器的长度为num，若容器变长，则以默认值填充新位置。</span></span><br><span class="line">​               <span class="comment">// 如果容器变短，则末尾超出容器长度的元素被删除。</span></span><br><span class="line">v1.<span class="built_in">resize</span>(<span class="number">10</span>, <span class="number">15</span>); <span class="comment">//重新指定容器的长度为num，若容器变长，则以elem值填充新位置。</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 功能：插入和删除</span></span><br><span class="line">v1.<span class="built_in">push_back</span>(<span class="number">50</span>); <span class="comment">//尾部插入元素ele</span></span><br><span class="line">v1.<span class="built_in">pop_back</span>(); <span class="comment">//删除最后一个元素</span></span><br><span class="line">v1.<span class="built_in">insert</span>(v1.<span class="built_in">begin</span>(), <span class="number">60</span>); <span class="comment">//迭代器指向位置pos插入元素ele</span></span><br><span class="line">v1.<span class="built_in">insert</span>(v1.<span class="built_in">begin</span>(), <span class="number">3</span>, <span class="number">70</span>);<span class="comment">//迭代器指向位置pos插入count个元素ele</span></span><br><span class="line">v1.<span class="built_in">erase</span>(v1.<span class="built_in">begin</span>()); <span class="comment">//删除迭代器指向的元素</span></span><br><span class="line">v1.<span class="built_in">erase</span>(v1.<span class="built_in">begin</span>(), v1.<span class="built_in">end</span>());<span class="comment">//删除迭代器从start到end之间的元素</span></span><br><span class="line">v1.<span class="built_in">clear</span>(); <span class="comment">//删除容器中所有元素</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 数据存取</span></span><br><span class="line">v1.<span class="built_in">at</span>(<span class="number">3</span>); <span class="comment">//返回索引3所指的数据</span></span><br><span class="line">v1[<span class="number">3</span>];    <span class="comment">//返回索引3所指的数据</span></span><br><span class="line">v1.<span class="built_in">front</span>(); <span class="comment">//返回容器中第一个数据元素</span></span><br><span class="line">v1.<span class="built_in">back</span>();  <span class="comment">//返回容器中最后一个数据元素</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 互换</span></span><br><span class="line">v1.<span class="built_in">swap</span>(v2);</span><br><span class="line"><span class="comment">// 预留空间</span></span><br><span class="line">v1.<span class="built_in">reseve</span>(<span class="number">1000</span>);</span><br></pre></td></tr></table></figure>
+
+<p><strong>list</strong> :<br>&ensp;&ensp;&ensp;&ensp;双向链表；<br>&ensp;&ensp;&ensp;&ensp;可做stack和queue用。  </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 赋值</span></span><br><span class="line">list&lt;<span class="keyword">int</span>&gt;L1;</span><br><span class="line">L1.<span class="built_in">push_back</span>(<span class="number">10</span>);</span><br><span class="line">L1.<span class="built_in">push_back</span>(<span class="number">20</span>);</span><br><span class="line">L1.<span class="built_in">push_back</span>(<span class="number">30</span>);</span><br><span class="line">L1.<span class="built_in">push_back</span>(<span class="number">40</span>);</span><br><span class="line"></span><br><span class="line">list&lt;<span class="keyword">int</span>&gt;<span class="built_in">L2</span>(L1.<span class="built_in">begin</span>(),L1.<span class="built_in">end</span>());</span><br><span class="line"></span><br><span class="line">list&lt;<span class="keyword">int</span>&gt;<span class="built_in">L3</span>(L2);</span><br><span class="line"></span><br><span class="line">list&lt;<span class="keyword">int</span>&gt;<span class="built_in">L4</span>(<span class="number">10</span>, <span class="number">1000</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 交换</span></span><br><span class="line">L1.<span class="built_in">swap</span>(L4); <span class="comment">//将lst与本身的元素互换。</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 大小操作</span></span><br><span class="line">L1.<span class="built_in">size</span>();  <span class="comment">// 返回容器中元素的个数</span></span><br><span class="line">L1.<span class="built_in">empty</span>(); <span class="comment">// 判断容器是否为空</span></span><br><span class="line">L1.<span class="built_in">resize</span>(<span class="number">10</span>); <span class="comment">//  重新指定容器的长度为10，若容器变长，则以默认值填充新位置。</span></span><br><span class="line">               <span class="comment">//  如果容器变短，则末尾超出容器长度的元素被删除。</span></span><br><span class="line">L1.<span class="built_in">resize</span>(<span class="number">10</span>, <span class="number">100</span>); <span class="comment">//重新指定容器的长度为10，若容器变长，则以100值填充新位置。</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 插入删除</span></span><br><span class="line">L1.<span class="built_in">push_back</span>(<span class="number">100</span>);  <span class="comment">// 在容器尾部加入一个元素100</span></span><br><span class="line">L1.<span class="built_in">pop_back</span>();      <span class="comment">// 删除容器中最后一个元素</span></span><br><span class="line">L1.<span class="built_in">push_front</span>(<span class="number">200</span>); <span class="comment">// 在容器开头插入一个元素200</span></span><br><span class="line">L1.<span class="built_in">pop_front</span>();     <span class="comment">// 从容器开头移除第一个元素</span></span><br><span class="line"></span><br><span class="line">list&lt;<span class="keyword">int</span>&gt;::iterator it = L.<span class="built_in">begin</span>();</span><br><span class="line">L.<span class="built_in">insert</span>(++it, <span class="number">1000</span>);  <span class="comment">// 在1位置插元素300的拷贝，返回新数据的位置。</span></span><br><span class="line">L1.<span class="built_in">insert</span>(++it,<span class="number">4</span>,<span class="number">300</span>); <span class="comment">// 在1位置插入4个300数据，无返回值。</span></span><br><span class="line">L1.<span class="built_in">insert</span>(pos,beg,end); <span class="comment">//在pos位置插入[beg,end)区间的数据，无返回值。</span></span><br><span class="line">L1.<span class="built_in">clear</span>();         <span class="comment">// 移除容器的所有数据</span></span><br><span class="line"></span><br><span class="line">L1.<span class="built_in">erase</span>(beg,end);   <span class="comment">// 删除[beg,end)区间的数据，返回下一个数据的位置。</span></span><br><span class="line">L1.<span class="built_in">erase</span>(++it);      <span class="comment">// 删除1位置的数据，返回下一个数据的位置。</span></span><br><span class="line"></span><br><span class="line">L1.<span class="built_in">remove</span>(<span class="number">100</span>);     <span class="comment">// 删除容器中所有与elem值匹配的元素。</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 反转和排序</span></span><br><span class="line">L1.<span class="built_in">reverse</span>(); <span class="comment">//反转链表</span></span><br><span class="line">L1.<span class="built_in">sort</span>(); <span class="comment">//链表排序</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>deque</strong>:<br>&ensp;&ensp;&ensp;&ensp;双端队列；<br>&ensp;&ensp;&ensp;&ensp;O(1)随机读取，O(1)头部尾部增删。   </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 赋值</span></span><br><span class="line">deque&lt;<span class="keyword">int</span>&gt; d1; <span class="comment">//无参构造函数</span></span><br><span class="line">d1.<span class="built_in">push_back</span>(<span class="number">10</span>);</span><br><span class="line">d1.<span class="built_in">push_back</span>(<span class="number">20</span>);</span><br><span class="line">d1.<span class="built_in">push_back</span>(<span class="number">30</span>);</span><br><span class="line"></span><br><span class="line"><span class="function">deque&lt;<span class="keyword">int</span>&gt; <span class="title">d2</span><span class="params">(d1.begin(),d1.end())</span></span>;</span><br><span class="line">deque&lt;<span class="keyword">int</span>&gt;<span class="built_in">d3</span>(<span class="number">10</span>,<span class="number">100</span>);  <span class="comment">//构造函数将n个elem拷贝给本身。</span></span><br><span class="line">deque&lt;<span class="keyword">int</span>&gt;d4 = d3;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// 大小操作</span><br><span class="line">d1.empty(); // 判断容器是否为空</span><br><span class="line">d1.size();  // 返回容器中元素的个数</span><br><span class="line">d1.resize(15); // 重新指定容器的长度为15,若容器变长，则以默认值填充新位置。</span><br><span class="line">                   ​// 如果容器变短，则末尾超出容器长度的元素被删除。</span><br><span class="line">d1.resize(15, 100); // 重新指定容器的长度为15,若容器变长，则以100值填充新位置。</span><br><span class="line">                         // 如果容器变短，则末尾超出容器长度的元素被删除。</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 插入删除1</span></span><br><span class="line">d1.<span class="built_in">push_back</span>(<span class="number">100</span>); <span class="comment">//在容器尾部添加一个数据</span></span><br><span class="line">d1.<span class="built_in">push_front</span>(<span class="number">200</span>); <span class="comment">//在容器头部插入一个数据</span></span><br><span class="line">d1.<span class="built_in">pop_back</span>(); <span class="comment">//删除容器最后一个数据</span></span><br><span class="line">d1.<span class="built_in">pop_front</span>(); <span class="comment">//删除容器第一个数据</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 插入删除2</span></span><br><span class="line">d1.<span class="built_in">insert</span>(pos,elem); <span class="comment">//在pos位置插入一个elem元素的拷贝，返回新数据的位置。</span></span><br><span class="line">d1.<span class="built_in">insert</span>(pos,n,elem); <span class="comment">//在pos位置插入n个elem数据，无返回值。</span></span><br><span class="line">d1.<span class="built_in">insert</span>(pos,beg,end); <span class="comment">//在pos位置插入[beg,end)区间的数据，无返回值。</span></span><br><span class="line">d1.<span class="built_in">clear</span>(); <span class="comment">//清空容器的所有数据</span></span><br><span class="line">d1.<span class="built_in">erase</span>(beg,end); <span class="comment">//删除[beg,end)区间的数据，返回下一个数据的位置。</span></span><br><span class="line">d1.<span class="built_in">erase</span>(pos); <span class="comment">//删除pos位置的数据，返回下一个数据的位置。</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 数据存取</span></span><br><span class="line">d1.<span class="built_in">at</span>(<span class="keyword">int</span> idx); <span class="comment">//返回索引idx所指的数据</span></span><br><span class="line">d1.[idx]; <span class="comment">//返回索引idx所指的数据</span></span><br><span class="line">d1.<span class="built_in">front</span>(); <span class="comment">//返回容器中第一个数据元素</span></span><br><span class="line">d1.<span class="built_in">back</span>(); <span class="comment">//返回容器中最后一个数据元素</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 排序</span></span><br><span class="line"><span class="built_in">sort</span>(d1.<span class="built_in">begin</span>(), d1.<span class="built_in">end</span>());</span><br></pre></td></tr></table></figure>
+<h2 id="2-Container-Adaptors"><a href="#2-Container-Adaptors" class="headerlink" title="2.Container Adaptors:"></a>2.Container Adaptors:</h2><p><strong>基于其他容器实现的数据结构</strong>  </p>
+<p><strong>stack</strong>:<br>&ensp;&ensp;&ensp;&ensp;栈，后入先出；<br>&ensp;&ensp;&ensp;&ensp;常用于深度优先、字符串匹配、单调栈问题；<br>&ensp;&ensp;&ensp;&ensp;默认基于deque。  </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 构造函数：</span></span><br><span class="line">stack&lt;<span class="keyword">int</span>&gt; s1; <span class="comment">//stack采用模板类实现， stack对象的默认构造形式</span></span><br><span class="line">s1.<span class="built_in">push</span>(<span class="number">10</span>);</span><br><span class="line">s1.<span class="built_in">push</span>(<span class="number">20</span>);</span><br><span class="line">s1.<span class="built_in">push</span>(<span class="number">30</span>); </span><br><span class="line"><span class="function">stack&lt;<span class="keyword">int</span>&gt; <span class="title">s2</span><span class="params">(s1)</span></span>; <span class="comment">//拷贝构造函数  </span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 数据存取：  </span></span><br><span class="line">s1.<span class="built_in">push</span>(<span class="number">40</span>); <span class="comment">// 向栈顶添加元素</span></span><br><span class="line">s1.<span class="built_in">pop</span>();      <span class="comment">// 从栈顶移除第一个元素</span></span><br><span class="line">s1.<span class="built_in">top</span>();      <span class="comment">// 返回栈顶元素</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//大小操作：</span></span><br><span class="line">s1.<span class="built_in">empty</span>(); <span class="comment">//判断堆栈是否为空</span></span><br><span class="line">s1.<span class="built_in">size</span>(); <span class="comment">//返回栈的大小</span></span><br></pre></td></tr></table></figure>
+<p><strong>queue</strong>:<br>&ensp;&ensp;&ensp;&ensp;队列，先入先出；<br>&ensp;&ensp;&ensp;&ensp;常用于广度优先搜索；<br>&ensp;&ensp;&ensp;&ensp;默认基于deque。   </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 构造函数：</span></span><br><span class="line">queue&lt;<span class="keyword">int</span>&gt; q1; <span class="comment">//queue采用模板类实现，queue对象的默认构造形式</span></span><br><span class="line">q1.<span class="built_in">push</span>(<span class="number">10</span>);</span><br><span class="line">q1.<span class="built_in">push</span>(<span class="number">20</span>);</span><br><span class="line"><span class="function">queue&lt;<span class="keyword">int</span>&gt; <span class="title">q2</span><span class="params">(q1)</span></span>; <span class="comment">//拷贝构造函数  </span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 数据存取</span></span><br><span class="line">q1.<span class="built_in">push</span>(elem); <span class="comment">//往队尾添加元素</span></span><br><span class="line">q1.<span class="built_in">pop</span>(); <span class="comment">//从队头移除第一个元素</span></span><br><span class="line">q1.<span class="built_in">back</span>(); <span class="comment">//返回最后一个元素</span></span><br><span class="line">q1.<span class="built_in">front</span>(); <span class="comment">//返回第一个元素</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 大小操作：</span></span><br><span class="line">q1.<span class="built_in">empty</span>(); <span class="comment">//判断队列是否为空</span></span><br><span class="line">q1.<span class="built_in">size</span>(); <span class="comment">//返回队列的大小</span></span><br></pre></td></tr></table></figure>
+<p><strong>priority_queue</strong>:<br>&ensp;&ensp;&ensp;&ensp;最大值先出的数据结构；<br>&ensp;&ensp;&ensp;&ensp;用O(nlogn)的时间排序数组，O(nlogn)的时间插入任意值，O(1)的时间获得最大值, O(logn)的时间删除最大值；<br>&ensp;&ensp;&ensp;&ensp;常用于维护数据结构并快速获取最大最小；<br>&ensp;&ensp;&ensp;&ensp;默认基于vector。  </p>
+<h2 id="3-Associative-Containers"><a href="#3-Associative-Containers" class="headerlink" title="3.Associative Containers:"></a>3.Associative Containers:</h2><p><strong>实现了排好序的数据结构</strong>  </p>
+<p><strong>set</strong>:<br>&ensp;&ensp;&ensp;&ensp;有序集合，元素不可重复；<br>&ensp;&ensp;&ensp;&ensp;O(nlogn)排序数组，插入删除查找任意值，获得最大最小值。   </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">// 构造：</span></span><br><span class="line"> set&lt;<span class="keyword">int</span>&gt; st1; <span class="comment">// 默认构造函数;</span></span><br><span class="line"> st1.<span class="built_in">insert</span>(<span class="number">10</span>);</span><br><span class="line"> st1.<span class="built_in">insert</span>(<span class="number">20</span>);</span><br><span class="line"> st1.<span class="built_in">insert</span>(<span class="number">30</span>);</span><br><span class="line"> st1.<span class="built_in">insert</span>(<span class="number">40</span>);</span><br><span class="line"> </span><br><span class="line"> set&lt;<span class="keyword">int</span>&gt; st2;</span><br><span class="line"> <span class="built_in">st2</span>(st1);     <span class="comment">// 拷贝构造函数  </span></span><br><span class="line"> </span><br><span class="line"> set&lt;<span class="keyword">int</span>&gt;s3;</span><br><span class="line"> s3 = s2;</span><br><span class="line">```  </span><br><span class="line">```c++  </span><br><span class="line"> <span class="comment">//大小和交换</span></span><br><span class="line"> st1.<span class="built_in">size</span>();  <span class="comment">// 返回容器中元素的数目</span></span><br><span class="line"> st1.<span class="built_in">empty</span>(); <span class="comment">// 判断容器是否为空</span></span><br><span class="line"> st1.<span class="built_in">swap</span>(st2); <span class="comment">// 交换两个集合容器</span></span><br><span class="line">```  </span><br><span class="line">```c++</span><br><span class="line"> <span class="comment">// 插入和删除</span></span><br><span class="line"> st1.<span class="built_in">insert</span>(elem); <span class="comment">// 在容器中插入元素。</span></span><br><span class="line"> st1.<span class="built_in">clear</span>();      <span class="comment">// 清除所有元素</span></span><br><span class="line"> st1.<span class="built_in">erase</span>(pos);   <span class="comment">// 删除pos迭代器所指的元素，返回下一个元素的迭代器。</span></span><br><span class="line"> st1.<span class="built_in">erase</span>(beg, end); <span class="comment">// 删除区间[beg,end)的所有元素 ，返回下一个元素的迭代器。</span></span><br><span class="line"> st1.<span class="built_in">erase</span>(elem);     <span class="comment">// 删除容器中值为elem的元素。</span></span><br><span class="line">```   </span><br><span class="line">```c++</span><br><span class="line"> <span class="comment">// 查找和统计</span></span><br><span class="line"> st1.<span class="built_in">find</span>(key);  <span class="comment">// 查找key是否存在,若存在，返回该键的元素的迭代器；若不存在，返回set.end();</span></span><br><span class="line"> st1.<span class="built_in">count</span>(key); <span class="comment">// 统计key的元素个数</span></span><br><span class="line">```    </span><br><span class="line">**multiset**:  </span><br><span class="line">&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;支持重复元素的set。  </span><br><span class="line">    </span><br><span class="line">**map**:  </span><br><span class="line">&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;有序映射或有序表；  </span><br><span class="line">&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;在map的基础上加上映射关系，可以对每一个元素key存一个值value。</span><br><span class="line">```c++</span><br><span class="line"> <span class="comment">// 构造函数</span></span><br><span class="line"> map&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; m1; <span class="comment">// 默认构造</span></span><br><span class="line"> m1.<span class="built_in">insert</span>(pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;(<span class="number">1</span>, <span class="number">10</span>));</span><br><span class="line"> m1.<span class="built_in">insert</span>(pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;(<span class="number">2</span>, <span class="number">20</span>));</span><br><span class="line"> m1.<span class="built_in">insert</span>(pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;(<span class="number">3</span>, <span class="number">30</span>)); </span><br><span class="line"> </span><br><span class="line"> <span class="function">map&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; <span class="title">m2</span><span class="params">(m1)</span></span>; <span class="comment">//拷贝构造  </span></span><br><span class="line"> </span><br><span class="line"> map&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;m3;</span><br><span class="line"> m3 = m2; <span class="comment">//赋值</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 大小和交换</span></span><br><span class="line">m1.<span class="built_in">size</span>();   <span class="comment">// 返回容器中元素的数目</span></span><br><span class="line">m1.<span class="built_in">empty</span>();  <span class="comment">// 判断容器是否为空</span></span><br><span class="line">m1.<span class="built_in">swap</span>(m2); <span class="comment">// 交换两个集合容器</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 插入和删除</span></span><br><span class="line"><span class="comment">//插入</span></span><br><span class="line">map&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; m;</span><br><span class="line"><span class="comment">//第一种插入方式</span></span><br><span class="line">m.<span class="built_in">insert</span>(pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;(<span class="number">1</span>, <span class="number">10</span>));</span><br><span class="line"><span class="comment">//第二种插入方式</span></span><br><span class="line">m.<span class="built_in">insert</span>(<span class="built_in">make_pair</span>(<span class="number">2</span>, <span class="number">20</span>));</span><br><span class="line"><span class="comment">//第三种插入方式</span></span><br><span class="line">m.<span class="built_in">insert</span>(map&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;::<span class="built_in">value_type</span>(<span class="number">3</span>, <span class="number">30</span>));</span><br><span class="line"><span class="comment">//第四种插入方式</span></span><br><span class="line">m[<span class="number">4</span>] = <span class="number">40</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//删除</span></span><br><span class="line">m.<span class="built_in">erase</span>(m.<span class="built_in">begin</span>()); <span class="comment">//c删除迭代器所指的元素，返回下一个元素的迭代器。</span></span><br><span class="line">m.<span class="built_in">erase</span>(<span class="number">3</span>);  <span class="comment">//c删除容器中值为3的元素。</span></span><br><span class="line"><span class="comment">//清空</span></span><br><span class="line">m.<span class="built_in">erase</span>(m.<span class="built_in">begin</span>(),m.<span class="built_in">end</span>());</span><br><span class="line">m.<span class="built_in">clear</span>(); <span class="comment">//c清除所有元素</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//查找</span></span><br><span class="line">map&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;::iterator pos = m.<span class="built_in">find</span>(<span class="number">3</span>); <span class="comment">// 查找key是否存在,若存在，返回该键的元素的迭代器；若不存在，返回set.end();</span></span><br><span class="line"><span class="keyword">int</span> num = m.<span class="built_in">count</span>(<span class="number">3</span>); <span class="comment">// 统计key的元素个数</span></span><br></pre></td></tr></table></figure>
+<p><strong>multimap</strong>:<br>&ensp;&ensp;&ensp;&ensp;支持重复元素的map。  </p>
+<h2 id="4-Unordered-Associative-Containers"><a href="#4-Unordered-Associative-Containers" class="headerlink" title="4.Unordered Associative Containers:"></a>4.Unordered Associative Containers:</h2><p><strong>对每个Associative Containers实现了哈希版本</strong>  </p>
+<p><strong>unordered_set</strong>:<br>&ensp;&ensp;&ensp;&ensp;哈希集合；<br>&ensp;&ensp;&ensp;&ensp;O(1)插入、查找、删除元素；<br>&ensp;&ensp;&ensp;&ensp;常用于快速查询一个元素是否在这个容器内。  </p>
+<p><strong>unordered_multiset</strong>:<br>&ensp;&ensp;&ensp;&ensp;支持重复元素的unordered_set。  </p>
+<p><strong>unordered_map</strong>:<br>&ensp;&ensp;&ensp;&ensp;哈希映射或哈希表；<br>&ensp;&ensp;&ensp;&ensp;在unordered_set基础上加上映射关系，可以对每一个元素key存一个值value。  </p>
+<p><strong>unordered_multimap</strong>:<br>&ensp;&ensp;&ensp;&ensp;支持重复元素的unordered_map。  </p>
+<h2 id="5-堆-heap"><a href="#5-堆-heap" class="headerlink" title="5.堆 heap"></a>5.堆 heap</h2>
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2021/06/01/blog20210601_STL/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2021/07/20/blog20210720_SQL/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          [SQL]（更新中）
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/2021/05/20/blog20210520_markdown/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">【MarkDown】MarkDown语法</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -197,8 +360,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
